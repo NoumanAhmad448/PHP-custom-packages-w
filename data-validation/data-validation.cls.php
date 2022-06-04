@@ -28,7 +28,7 @@ class DataValidator{
      * 
      *********************************************************************************************************/
     public static function validator($data,$rules){        
-        if(self::isArrayValidation($rules) && count($rules) !== 0){
+        if(self::isArray($rules) && count($rules) !== 0){
             // verify given rules
             $extra_rules = self::verifyGivenRules($rules);
             if($extra_rules){
@@ -78,7 +78,7 @@ class DataValidator{
         return $doesNotFail;
     }
 
-    private static function isArrayValidation($data){
+    private static function isArray($data){
         return is_array($data);
     }
 
@@ -110,6 +110,46 @@ class DataValidator{
         self::$response[self::$resParams[0]] = true;
         self::$response[self::$resParams[1]] = array();
         return self::$response; 
+    }
+
+    private static function isStringValidation($data, $errMsg){
+          
+        if(is_string($data) === false){
+            self::setErrorMessage(false, empty($errMsg) ? "object must be string" : $errMsg);
+            return false;
+        }
+        return true;
+    }
+    private static function isIntegerValidation($data, $errMsg){
+          
+        if(is_integer($data) === false){
+            self::setErrorMessage(false, empty($errMsg) ? "object must be integer" : $errMsg);
+            return false;
+        }
+        return true;
+    }
+    private static function isBooleanValidation($data, $errMsg){
+          
+        if(is_bool($data) === false){
+            self::setErrorMessage(false, empty($errMsg) ? "object must be boolean" : $errMsg);
+            return false;
+        }
+        return true;
+    }
+
+    private static function isArrayValidation($data, $errMsg){          
+        if(is_Array($data) === false){
+            self::setErrorMessage(false, empty($errMsg) ? "object does't include any data" : $errMsg);
+            return false;
+        }
+        return true;
+    }
+    private static function containHTMLValidation($data, $errMsg){          
+        if(strip_tags($data) !== $data){
+            self::setErrorMessage(false, empty($errMsg) ? "object can't have html in it" : $errMsg);
+            return false;
+        }
+        return true;
     }
     
 }

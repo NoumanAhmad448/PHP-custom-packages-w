@@ -3,6 +3,31 @@
 include_once("data-validation.cls.php");
 include_once("../customFunctions.custom.php");
 
+
+$validations = DataValidator::validator('<html><head></head></html>', array('hasData','containHTML' => 'bla bla bla bla'));
+dd($validations);
+dd("*******************************",false,"",0,false,"#f00f00");
+$validations = DataValidator::validator('false', array('hasData','containHTML'));
+dd($validations);
+dd("*******************************",false,"",0,false,"#f00f00");
+$validations = DataValidator::validator('false', array('hasData','isBoolean' => '"false" must be boolean'));
+dd($validations);
+dd("*******************************",false,"",0,false,"#f00f00");
+$validations = DataValidator::validator(false, array('hasData','isBoolean'));
+dd($validations);
+dd("*******************************",false,"",0,false,"#f00f00");
+$validations = DataValidator::validator("2", array('isInteger'));
+dd($validations);
+dd("*******************************",false,"",0,false,"#f00f00");
+$validations = DataValidator::validator(2, array('isInteger'));
+dd($validations);
+dd("*******************************",false,"",0,false,"#f00f00");
+$validations = DataValidator::validator(2, array('isString'));
+dd($validations);
+dd("*******************************",false,"",0,false,"#f00f00");
+$validations = DataValidator::validator("this is simple test", array('isString'));
+dd($validations);
+dd("*******************************",false,"",0,false,"#f00f00");
 $validations = DataValidator::validator("this is simple test", array('hasData'));
 dd($validations);
 $validations = DataValidator::validator("", array('hasData'));
