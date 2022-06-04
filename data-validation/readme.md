@@ -19,3 +19,5 @@ DataValidator::validator('', array['hasData']) => array('isValidation' => false,
 DataValidator::validator('', array['hasData' => 'custom err message']) => array('isValidation' => false, 'detail' => array('err' => 'custom err message'))
 
 
+![data validation](../resource/images/data-validation.PNG)
+
